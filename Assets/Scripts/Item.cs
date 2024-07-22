@@ -4,30 +4,27 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Item : MonoBehaviour
 {
 
     [SerializeField] private RectTransform rect;
     [SerializeField] private Animator anim;
+    [SerializeField] int score;
     public bool isPresentFridge;
     private bool canClean = false;
 
-    
-    public void OnBeginDrag(PointerEventData eventData)
+
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //throw new System.NotImplementedException();
+        
     }
 
-    public void OnDrag(PointerEventData eventData)
+    // Start is called before the first frame update
+    void Start()
     {
-        rect.anchoredPosition += eventData.delta;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-       // throw new System.NotImplementedException();
-
-        if(canClean)
+        isPresentFridge = true;
+        if (!GameManager.Instance.isAnyItemPresentInFirdge())
         {
             Debug.Log("Clean started");
             anim.enabled = true;
@@ -41,31 +38,12 @@ public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        isPresentFridge = true;
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        Debug.Log(collision.gameObject.name);
-        if (!GameManager.Instance.isAnyItemPresentInFirdge())
-        {
-            canClean = true;
-        }
-    }
 
 
     public void OnAnimationbComplete()
     {
+        GameManager.Instance.IncrementScore(score);
         GameManager.Instance.chefController.Init(false, "Good Job! Now keep items back in the fridge");
         Destroy(gameObject);
     }

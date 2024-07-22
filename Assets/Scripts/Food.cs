@@ -27,12 +27,14 @@ public class Food : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
         {
             gameObject.transform.SetParent(tablePosition.gameObject.transform, true);
             rect.localPosition = new Vector3(0, 0, 0);
+            GameManager.Instance.IncrementScore(GameManager.Instance.scoreToKeepItemOnTable);
         }
         else if(isNearFridge)
         {
             // rect.localPosition = firdgePosition.localPosition; 
             gameObject.transform.SetParent(fridgePosition.gameObject.transform, true);
             rect.localPosition = new Vector3(0, 0, 0);
+            GameManager.Instance.IncrementScore(GameManager.Instance.scoreTokeepItemOnFride);
         }
     }
 
