@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private List<Food> foods;
+    public AudioManager audioManager;
     public ChefController chefController;
     public TextMeshProUGUI scoreText;
+
+    [SerializeField] private GameObject PausePanel;
 
     public int scoreTokeepItemOnFride = 10;
     public int scoreToKeepItemOnTable = 10;
@@ -18,6 +21,9 @@ public class GameManager : MonoBehaviour
     private string text = "Start cleaning the fridge";
     int score;
 
+    public bool isGameMute;
+    internal bool isTouchEnabled;
+    public bool isGamePaused;
 
     private void Awake()
     {
@@ -30,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         chefController.Init(true, text);
+        isTouchEnabled = true;
     }
 
     public bool isAnyItemPresentInFirdge()
@@ -48,5 +55,14 @@ public class GameManager : MonoBehaviour
     {
         score += _score;
         scoreText.text = "Score: " + score;
+    }
+
+    public void OpenPauseScreen()
+    {
+        if (!isTouchEnabled)
+            return;
+        isTouchEnabled = false;
+
+        PausePanel.SetActive(true);
     }
 }

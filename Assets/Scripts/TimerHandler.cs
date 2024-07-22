@@ -6,6 +6,7 @@ public class TimerHandler : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     private float totalTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,25 +16,29 @@ public class TimerHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (totalTime > 0)
+        if (!GameManager.Instance.isGamePaused)
         {
-            // Subtract elapsed time every frame
-            totalTime -= Time.deltaTime;
+            if (totalTime > 0)
+            {
+                // Subtract elapsed time every frame
+                totalTime -= Time.deltaTime;
 
-            // Divide the time by 60
-            float minutes = Mathf.FloorToInt(totalTime / 60);
+                // Divide the time by 60
+                float minutes = Mathf.FloorToInt(totalTime / 60);
 
-            // Returns the remainder
-            float seconds = Mathf.FloorToInt(totalTime % 60);
+                // Returns the remainder
+                float seconds = Mathf.FloorToInt(totalTime % 60);
 
-            // Set the text string
-            timerText.text = $"{minutes} : {seconds}";
+                // Set the text string
+                timerText.text = $"{minutes} : {seconds}";
+            }
+            else
+            {
+                timerText.text = "Time's up";
+                totalTime = 0;
+            }
         }
-        else
-        {
-            timerText.text = "Time's up";
-            totalTime = 0;
-        }
+        
     }
 }
 
