@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private List<Item> items;
+    [SerializeField] private List<Food> foods;
 
 
     private void Awake()
@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
 
     public bool areAllItemsPresentInFirdge()
     {
-        for(int i = 0; i < items.Count; i++)
+        for(int i = 0; i < foods.Count; i++)
         {
-            if (items[i].isPresentFridge)
+            if (foods[i].isNearTable)
                 return true;
         }
 

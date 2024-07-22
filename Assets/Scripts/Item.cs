@@ -46,7 +46,9 @@ public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!GameManager.Instance.areAllItemsPresentInFirdge())
+
+        Debug.Log(collision.gameObject.name);
+        if (!GameManager.Instance.areAllItemsPresentInFirdge())
         {
             canClean = true;
         }

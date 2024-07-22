@@ -16,4 +16,6 @@ public class UIItem : MonoBehaviour
         GameObject obj = Instantiate(item, objectPos, Quaternion.identity);
         obj.transform.SetParent(parent,false);
     }
+
+ 
 }
