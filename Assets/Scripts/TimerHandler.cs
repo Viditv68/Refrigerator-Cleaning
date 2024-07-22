@@ -34,7 +34,7 @@ public class TimerHandler : MonoBehaviour
             }
             else
             {
-                timerText.text = "Time's up";
+                GameManager.Instance.openScorePanel?.Invoke();
                 totalTime = 0;
             }
         }

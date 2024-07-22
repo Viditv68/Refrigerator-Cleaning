@@ -28,6 +28,7 @@ public class Item : MonoBehaviour
         {
             Debug.Log("Clean started");
             anim.enabled = true;
+            GameManager.Instance.isTouchEnabled = false;
         }
         else
         {
@@ -46,6 +47,7 @@ public class Item : MonoBehaviour
         GameManager.Instance.IncrementScore(score);
         GameManager.Instance.chefController.Init(false, "Good Job! Now keep items back in the fridge");
         Destroy(gameObject);
+        GameManager.Instance.isTouchEnabled = true;
     }
 
 }

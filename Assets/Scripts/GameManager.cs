@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject scorePanel;
 
     public int scoreTokeepItemOnFride = 10;
     public int scoreToKeepItemOnTable = 10;
@@ -24,6 +26,9 @@ public class GameManager : MonoBehaviour
     public bool isGameMute;
     internal bool isTouchEnabled;
     public bool isGamePaused;
+
+
+    public UnityAction openScorePanel;
 
     private void Awake()
     {
@@ -37,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         chefController.Init(true, text);
         isTouchEnabled = true;
+        openScorePanel += OpenScoreScreen;
     }
 
     public bool isAnyItemPresentInFirdge()
@@ -64,5 +70,11 @@ public class GameManager : MonoBehaviour
         isTouchEnabled = false;
 
         PausePanel.SetActive(true);
+    }
+
+    public void OpenScoreScreen()
+    {
+        scorePanel.SetActive(true);
+        openScorePanel -= OpenScoreScreen;
     }
 }
