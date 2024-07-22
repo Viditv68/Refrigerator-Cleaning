@@ -8,6 +8,7 @@ public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
 {
 
     [SerializeField] private RectTransform rect;
+    [SerializeField] private Animator anim;
     public bool isPresentFridge;
     private bool canClean = false;
 
@@ -29,6 +30,14 @@ public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
         if(canClean)
         {
             Debug.Log("Clean started");
+            anim.enabled = true;
+        }
+        else
+        {
+            GameManager.Instance.chefController.gameObject.SetActive(true);
+            GameManager.Instance.chefController.Init(false, "Please remove items from Fridge First");
+
+            Destroy(gameObject);
         }
     }
 
@@ -48,10 +57,17 @@ public class Item : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
     {
 
         Debug.Log(collision.gameObject.name);
-        if (!GameManager.Instance.areAllItemsPresentInFirdge())
+        if (!GameManager.Instance.isAnyItemPresentInFirdge())
         {
             canClean = true;
         }
+    }
+
+
+    public void OnAnimationbComplete()
+    {
+        GameManager.Instance.chefController.Init(false, "Good Job! Now keep items back in the fridge");
+        Destroy(gameObject);
     }
 
 }

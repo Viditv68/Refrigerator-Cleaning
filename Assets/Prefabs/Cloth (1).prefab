@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8228526158076633693}
   - component: {fileID: 4115332710323755747}
   - component: {fileID: 478292926931958470}
+  - component: {fileID: 962015854171684342}
   m_Layer: 5
   m_Name: Cloth (1)
   m_TagString: Untagged
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rect: {fileID: 4905066452049901634}
+  anim: {fileID: 962015854171684342}
   isPresentFridge: 0
 --- !u!61 &478292926931958470
 BoxCollider2D:
@@ -136,3 +138,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 50.25, y: 49.97}
   m_EdgeRadius: 0
+--- !u!95 &962015854171684342
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984937446435076553}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88217378ef268cf43a0dc093dc997eb8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
